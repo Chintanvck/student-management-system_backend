@@ -40,4 +40,13 @@ public class StudentController {
         studentRepository.delete(studentRepository.findById(id).get());
         return studentRepository.findAll();
     }
+
+    @PutMapping("/updateStudent/{id}")
+    public List<Student> updateStudentRecord(@RequestBody Student student, @PathVariable Long id){
+        Student student1 = studentRepository.findById(id).get();
+        student1.setName(student.getName());
+        student1.setAddress(student.getAddress());
+        studentRepository.save(student1);
+        return studentRepository.findAll();
+    }
 }
